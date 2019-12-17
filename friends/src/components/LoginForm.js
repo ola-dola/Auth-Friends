@@ -1,20 +1,33 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function LoginForm(props) {
-  const [formValue, setFormValue] = useState({
+  const [formValues, setFormValues] = useState({
     username: "",
     password: ""
   });
 
   const handleChange = event => {
-    setFormValue({
-      ...formValue,
+    setFormValues({
+      ...formValues,
       [event.target.name]: event.target.value
     });
   };
 
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    axios.post("http://localhost:5000/api/login", formValues)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
+        props.history.push('/falz');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   return (
-    <form onSubmit={null}>
+    <form onSubmit={handleSubmit} >
       <div>
         Username
         <input onChange={handleChange} name="username" placeholder="Username" />

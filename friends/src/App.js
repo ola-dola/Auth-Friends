@@ -2,18 +2,20 @@ import React from "react";
 import { Route, NavLink } from "react-router-dom";
 import "./App.css";
 
+import LoginForm from './components/LoginForm';
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>FRIENDSIS</h1>
         <div>
-          <NavLink to="/">Login</NavLink>
-          <NavLink to="/friends">Your Friends</NavLink>
+          <NavLink to="/" className="links">Login</NavLink>
+          <NavLink to="/friends" className="links">Your Friends</NavLink>
         </div>
       </header>
 
-      <Route path="/" component={Login} />
+      <Route exact path="/" component={LoginForm} />
     </div>
   );
 }
