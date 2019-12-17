@@ -4,6 +4,7 @@ import "./App.css";
 
 import LoginForm from './components/LoginForm';
 import FriendsList from "./components/FriendsList";
+import AddFriend from "./components/AddFriend";
 
 function App() {
   return (
@@ -13,11 +14,13 @@ function App() {
         <div>
           <NavLink to="/" className="links">Login</NavLink>
           <NavLink to="/friends" className="links">Your Friends</NavLink>
+          <NavLink to="/add-friend" className="links">Add Friend</NavLink>
         </div>
       </header>
 
       <Route exact path="/" component={LoginForm} />
       <Route  path="/friends" component={FriendsList} />
+      <Route  path="/add-friend" component={AddFriend} />
     </div>
   );
 }
