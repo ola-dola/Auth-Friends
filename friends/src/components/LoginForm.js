@@ -19,7 +19,7 @@ export default function LoginForm(props) {
     axios.post("http://localhost:5000/api/login", formValues)
       .then(res => {
         localStorage.setItem('token', res.data.payload);
-        props.history.push('/falz');
+        props.history.push('/friends');
       })
       .catch(error => {
         console.log(error);

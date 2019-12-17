@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Redirect } from "react-router-dom";
 import "./App.css";
 
 import LoginForm from './components/LoginForm';
@@ -19,10 +19,17 @@ function App() {
       </header>
 
       <Route exact path="/" component={LoginForm} />
-      <Route  path="/friends" component={FriendsList} />
-      <Route  path="/add-friend" component={AddFriend} />
+      <Route  path="/friends" render={props => withAuthCheck(FriendsList, props)} />
+      <Route  path="/add-friend" render={props => withAuthCheck(AddFriend, props)} />
     </div>
   );
+}
+
+function withAuthCheck(Component, props) {
+  if (localStorage.getItem('token')) {
+    return <Component {...props} />
+  }
+  return <Redirect to="/" />
 }
 
 export default App;
