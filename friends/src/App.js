@@ -1,12 +1,18 @@
 import React from "react";
-import { Route, NavLink, Redirect } from "react-router-dom";
+import { Route, NavLink, Redirect, withRouter } from "react-router-dom";
 import "./App.css";
 
 import LoginForm from './components/LoginForm';
 import FriendsList from "./components/FriendsList";
 import AddFriend from "./components/AddFriend";
 
-function App() {
+function App(props) {
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    props.history.push('/');
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,6 +21,7 @@ function App() {
           <NavLink to="/" className="links">Login</NavLink>
           <NavLink to="/friends" className="links">Your Friends</NavLink>
           <NavLink to="/add-friend" className="links">Add Friend</NavLink>
+          <button onClick={logout} className="links">Logout</button>
         </div>
       </header>
 
@@ -32,4 +39,4 @@ function withAuthCheck(Component, props) {
   return <Redirect to="/" />
 }
 
-export default App;
+export default withRouter(App);

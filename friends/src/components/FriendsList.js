@@ -18,7 +18,7 @@ export default function FriendsList() {
   return (
     <section>
       {friendsData.map(friend => (
-        <div>
+        <div key={friend.id}>
           <h2>Name: {friend.name}</h2>
           <p>Age: {friend.age}</p>
           <p>Email: {friend.email}</p>

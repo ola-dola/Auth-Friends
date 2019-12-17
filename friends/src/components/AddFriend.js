@@ -33,15 +33,30 @@ export default function AddFriend(props) {
     <form onSubmit={handleSubmit}>
       <div>
         Name
-        <input onChange={handleChange} name="name" placeholder="Name" />
+        <input
+          onChange={handleChange}
+          type="text"
+          name="name"
+          placeholder="Name"
+        />
       </div>
       <div>
         Age
-        <input onChange={handleChange} name="age" placeholder="age" />
+        <input
+          onChange={handleChange}
+          type="text"
+          name="age"
+          placeholder="age"
+        />
       </div>
       <div>
         Email
-        <input onChange={handleChange} name="email" placeholder="Email" />
+        <input
+          onChange={handleChange}
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
       </div>
       <button type="submit">Add New Friend</button>
     </form>
