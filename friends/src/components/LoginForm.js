@@ -6,6 +6,7 @@ export default function LoginForm(props) {
     username: "",
     password: ""
   });
+  const [error, setError] = useState(null);
 
   const handleChange = event => {
     setFormValues({
@@ -16,13 +17,15 @@ export default function LoginForm(props) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    axios.post("http://localhost:5000/api/login", formValues)
+    axios
+      .post("http://localhost:5000/api/login", formValues)
       .then(res => {
-        localStorage.setItem('token', res.data.payload);
-        props.history.push('/friends');
+        localStorage.setItem("token", res.data.payload);
+        props.history.push("/friends");
       })
       .catch(error => {
         console.log(error);
+        setError(error);
       });
   };
 
@@ -46,6 +49,7 @@ export default function LoginForm(props) {
           placeholder="password"
         />
       </div>
+      {error ? <p>Invalid Password. Retry!</p> : null}
       <button type="submit">Login</button>
     </form>
   );
